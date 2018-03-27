@@ -1,0 +1,9 @@
+.key {
+    color: #1F34A0;
+    font-weight: bold;
+}
+  
+#hostname {
+    font-size: 30px;
+    color: #800000;
+}
