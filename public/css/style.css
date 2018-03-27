@@ -2,6 +2,11 @@
     color: #1F34A0;
     font-weight: bold;
 }
+
+#version {
+    font-size: 30px;
+    color: #800000;
+}
   
 #hostname {
     font-size: 30px;
