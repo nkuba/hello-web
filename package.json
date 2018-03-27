@@ -1,14 +1,19 @@
 {
   "name": "hello-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hello Web application",
   "main": "server.js",
   "dependencies": {
+    "console-stamp": "^0.2.6",
     "ejs": "^2.5.7",
     "express": "^4.15.3"
   },
   "scripts": {
     "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nkuba/hello-web.git"
   },
   "author": "Jakub Nowakowski",
   "license": "MIT"
