@@ -4,7 +4,7 @@ const os           = require('os');
 
 const app          = express();
 
-const APP_PORT     = 80;
+const APP_PORT     = 3080;
 
 const hostname  = os.hostname();
 const version   = process.env.npm_package_version
@@ -16,8 +16,18 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-    console.log('Received request')
+    console.log('Received request for path: ' + req.path)
     res.render('index', { hostname: hostname, version: version})
+})
+
+app.get('/version', function (req, res) {
+    console.log('Received request for path: ' + req.path)
+    res.send(version)
+})
+
+app.get('/hostname', function (req, res) {
+    console.log('Received request for path: ' + req.path)
+    res.send(hostname)
 })
 
 app.listen(APP_PORT)
