@@ -23,6 +23,14 @@
           <%= hostname %>
         </td>
       </tr>
+      <% for (var i = 0; i < vars.length; i++) { %>
+      <tr>
+        <td class="key">Environment variable:</td>
+        <td class="value" id="env-var-<%= i %>">
+          <%= vars[i] %>
+        </td>      
+      </tr>
+      <% } %>
     </table>
   </div>
 </body>
