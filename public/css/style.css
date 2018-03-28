@@ -1,14 +1,46 @@
-.key {
-    color: #1F34A0;
-    font-weight: bold;
+body {
+    background-color:#000000;
+    background-image: url("/img/background.jpg");
+    background-size: cover;
+    font-size: 15px;
+    color: #FF4D00;
+    font-family: Century Gothic, Verdana, Tahoma, Sans-serif;
+    -webkit-font-smoothing:antialiased;
 }
 
-#version {
-    font-size: 30px;
-    color: #800000;
+#content { 
+    background-color:#00000090;
+    max-width: 800px;
+    height: 200px;
+    margin: auto;
+    padding: 5px 10px;
+    text-align: center;
 }
-  
-#hostname {
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+    padding: 3px 10px;
+    border-top: 1px solid #d1ba9f56;
+    border-bottom: 1px solid #d1ba9f56;
+    vertical-align: center;
+}
+
+tr:hover {
+    background-color: #413a2d80;
+}
+
+.key {
+    text-align: right;
+    font-weight: bold;
+    width: 150px;
+}
+
+.value {
+    text-align: left;
     font-size: 30px;
-    color: #800000;
+    color: #ffffff;
 }

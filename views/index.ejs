@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Hello Web App</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-  </head>
-  <body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Hello Web App</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+  <div id="content">
     <h1>Hello Web App</h1>
+    <table>
+      <tr>
+        <td class="key">Version:</td>
+        <td class="value" id="version">
+          <%= version %>
+        </td>
+      </tr>
+      <tr>
+        <td class="key">Hostname:</td>
+        <td class="value" id="hostname">
+          <%= hostname %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
 
-    <div>
-      <span class="key">Version:</span> <span id="version"><%= version %></span><br>
-      <span class="key">Hostname:</span> <span id="hostname"><%= hostname %></span><br>
-    </div>
-
-  </body>
 </html>
