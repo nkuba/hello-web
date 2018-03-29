@@ -13,36 +13,27 @@
     <table>
       <tr>
         <td class="key">Version:</td>
-        <td class="value" id="version">
-          <%= version %>
-        </td>
+        <td class="value" id="version"><%= version %></td>
       </tr>
       <tr>
         <td class="key">Hostname:</td>
-        <td class="value" id="hostname">
-          <%= hostname %>
-        </td>
+        <td class="value" id="hostname"><%= hostname %></td>
       </tr>
       <tr>
         <td class="key">DB status:</td>
         <td class="value" id="db">
-          <% if(db.status){ %>
-            <span class="true">CONNECTED</span>
-          <% } else if ( db.status == false ) { %>
-            <span class="false">DISCONNECTED</span>
-          <% } else { %>
-            <span class="unknown">UNKNOWN</span>
+          <% if(db.status){ %><span class="true">CONNECTED</span>
+          <% } else if ( db.status == false ) { %><span class="false">DISCONNECTED</span>
+          <% } else { %><span class="unknown">UNKNOWN</span>
           <% } %>
         </td>
       </tr>
       <% for (var i = 0; i < vars.length; i++) { %>
-        <tr>
-          <td class="key">Environment variable:</td>
-          <td class="value" id="env-var-<%= i %>">
-            <%= vars[i] %>
-          </td>
-        </tr>
-        <% } %>
+      <tr>
+        <td class="key">Environment variable:</td>
+        <td class="value" id="env-var-<%= i %>"><%= vars[i] %></td>
+      </tr>
+      <% } %>
     </table>
   </div>
 </body>
