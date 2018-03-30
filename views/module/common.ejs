@@ -1,0 +1,42 @@
+<tr>
+    <td class="module" colspan="2"><%- name %></td>
+</tr>
+<% if(data) { %>
+    <tr>
+        <td class="key">Version:</td>
+        <td class="value" id="version">
+            <% if(data.version){ %>
+                <%= data.version %>
+            <% } else { %>
+                <span class="unknown">UNKNOWN</span>
+            <% } %>
+        </td>
+    </tr>
+    <tr>
+        <td class="key">Hostname:</td>
+        <td class="value" id="hostname">
+            <% if(data.hostname){ %>
+                <%= data.hostname %>
+            <% } else { %>
+                <span class="unknown">UNKNOWN</span>
+            <% } %>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="key" style="text-align:center">Environment Variables</td>
+    </tr>
+    <tr>
+        <% if(data.envVars && Object.keys(data.envVars).length > 0) { %>
+            <% Object.keys(data.envVars).forEach(function(key) { %>
+                <td class="key"><%- key %>:</td>
+                <td class="value"><%- data.envVars[key] %></td>
+            <% }); %>
+        <% } else { %>
+            <td colspan="2" class="unknown">UNKNOWN</td>
+        <% } %>
+    </tr>
+<% } else { %>
+    <tr>
+        <td colspan="2" class="unknown">UNKNOWN</td>
+    </tr>
+<% } %>

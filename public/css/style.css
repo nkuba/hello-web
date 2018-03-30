@@ -29,7 +29,19 @@ td {
 }
 
 tr:hover {
-    background-color: #413a2d80;
+    background-color: #685f4e80;
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.module {
+    font-size: 30px;
+    font-weight: bold;
+    border-top: 3px solid #d1ba9f56;
+    background-color: #24211c80;
 }
 
 .key {
@@ -40,7 +52,7 @@ tr:hover {
 
 .value {
     text-align: left;
-    font-size: 30px;
+    font-size: 20px;
     color: #ffffff;
 }
 

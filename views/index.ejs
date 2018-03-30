@@ -5,35 +5,18 @@
   <meta charset="utf-8">
   <title>Hello Web App</title>
   <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
   <div id="content">
-    <h1>Hello Web App</h1>
+    <h1>Hello App</h1>
     <table>
-      <tr>
-        <td class="key">Version:</td>
-        <td class="value" id="version"><%= version %></td>
-      </tr>
-      <tr>
-        <td class="key">Hostname:</td>
-        <td class="value" id="hostname"><%= hostname %></td>
-      </tr>
-      <tr>
-        <td class="key">DB status:</td>
-        <td class="value" id="db">
-          <% if(db.status){ %><span class="true">CONNECTED</span>
-          <% } else if ( db.status == false ) { %><span class="false">DISCONNECTED</span>
-          <% } else { %><span class="unknown">UNKNOWN</span>
-          <% } %>
-        </td>
-      </tr>
-      <% for (var i = 0; i < vars.length; i++) { %>
-      <tr>
-        <td class="key">Environment variable:</td>
-        <td class="value" id="env-var-<%= i %>"><%= vars[i] %></td>
-      </tr>
-      <% } %>
+      <%- include('module/common', {name: "WEB", data: web_data}); %>
+
+      <%- include('module/common', {name: "REST", data: rest_data}); %>
+
+      <%- include('module/database', {name: "DataBase", data: rest_data.db}); %>
     </table>
   </div>
 </body>

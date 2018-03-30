@@ -1,5 +1,11 @@
 # hello-web
 
+Works on port `4080`
+
+## Environment variables
+`REST_HOST`
+`REST_PORT`
+
 ## Docker
 ```bash
 # Build image
@@ -9,7 +15,7 @@ docker build -t hello-web .
 docker images
 
 # Run images
-docker run -d -p 3080:80 hello-web
+docker run -d -p 4080:80 hello-web
 
 
 # Tag image with VERSION

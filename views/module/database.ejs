@@ -1,0 +1,23 @@
+<tr>
+    <td class="module" colspan="2">
+        <%- name %>
+    </td>
+</tr>
+<% if(data) { %>
+    <tr>
+        <td class="key">Status:</td>
+        <td class="value" id="db-status">
+            <% if(data.status){ %>
+                <span class="true">CONNECTED</span>
+            <% } else if ( data.status == false ) { %>
+                <span class="false">DISCONNECTED</span>
+            <% } else { %>
+                <span class="unknown">UNKNOWN</span>
+            <% } %>
+        </td>
+    </tr>
+<% } else { %>
+    <tr>
+        <td colspan="2" class="unknown">UNKNOWN</td>
+    </tr>
+<% } %>

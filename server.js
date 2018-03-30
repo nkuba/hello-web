@@ -1,65 +1,63 @@
-const express = require('express');
-const http = require('http');
-const os = require('os');
-const mongodb = require('mongodb').MongoClient
+const express           = require('express');
+const http              = require('http');
+const os                = require('os');
+const app               = express();
 
-const app = express();
+const APP_PORT          = 4080;
+const HOSTNAME          = os.hostname();
+const APP_VERSION       = process.env.npm_package_version
 
-const APP_PORT = 3080;
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/';
+const REST_HOST         = process.env.REST_HOST     || "localhost"
+const REST_PORT         = process.env.REST_PORT     || 3080
 
-const HOSTNAME = os.hostname();
-const VERSION = process.env.npm_package_version
+function getRestData (callback) {
+    var options = {
+        host: REST_HOST,
+        port: REST_PORT,
+        path: "/",
+        method: 'GET'
+    };
+
+    var data = [];
+
+    http.request(options, function (res) {
+        console.log('Sending request with options: ' + JSON.stringify(options));
+        
+        let rawData = '';
+
+        res.on('data', (chunk) => { rawData += chunk; });
+
+        res.on('end', () => {
+            try {
+                const parsedData = JSON.parse(rawData);
+                data = parsedData;
+                console.log('Received data:');
+            } catch (e) {
+                console.error(e.message);
+            }
+            callback(data);
+        });
+    }).on('error', function(e) {
+        console.warn("Error on HTTP call;", e.message)
+        callback(data);
+    }).end();
+}
 
 // Add timestamp to log output
 require('console-stamp')(console, '[HH:MM:ss.l]');
-
-// Discover Environment Variables
-var vars = []
-if (process.env.ENV_VAR1) vars.push(process.env.ENV_VAR1)
-if (process.env.ENV_VAR2) vars.push(process.env.ENV_VAR2)
-
-console.log("Discovered environment variables: " + vars)
 
 // Web page configuration
 app.set('view engine', 'ejs')
 app.use(express.static('public'));
 
-// DB Status
-function isDbConnected(callback) {
-    var dbStatus;
-    console.log("Check connection to MongoDB: " + MONGO_URL)
-    mongodb.connect(MONGO_URL, (err, db) => {
-        if (err) {
-            dbStatus = false;
-            console.warn("Connection to MongoDB failed: " + err.message)
-        } else {
-            dbStatus = true;
-            db.close();
-        }
-        callback(dbStatus);
-    });
-}
-
-app.listen(APP_PORT)
-
-console.log('Starting ' + process.env.npm_package_name + ' v. ' + VERSION)
-console.log('Web Server started on host: ' + HOSTNAME + ', port: ' + APP_PORT);
-
 // Resources
 app.get('/', function (req, res) {
     console.log('Received request for path: ' + req.path)
-    isDbConnected(dbStatus => {
-        res.render('index', { hostname: HOSTNAME, version: VERSION, vars: vars, db: { status: dbStatus } })
-    })
+    getRestData((data) => { 
+        res.render('index', { web_data: {hostname: HOSTNAME, version: APP_VERSION}, rest_data: data }) })
 })
 
-app.get('/version', function (req, res) {
-    console.log('Received request for path: ' + req.path)
-    res.send(VERSION)
-})
+app.listen(APP_PORT)
 
-app.get('/hostname', function (req, res) {
-    console.log('Received request for path: ' + req.path)
-    res.send(HOSTNAME)
-})
+console.log('Starting ' + process.env.npm_package_name + ' v. ' + APP_VERSION)
+console.log('Web Server started on host: ' + HOSTNAME + ', port: ' + APP_PORT);
